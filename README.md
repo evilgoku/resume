@@ -78,7 +78,7 @@ GitHub Pages will publish `index.html` as the main page. The IT Support version 
 
 - [Portfolio](https://yehor-filistieiev.framer.website/)
 - [GitHub](https://github.com/evilgoku)
-- [LinkedIn](https://www.linkedin.com/in/yehorfilist/)
+- [LinkedIn](https://www.linkedin.com/in/yehor-filistieiev/)
 
 ## License
 

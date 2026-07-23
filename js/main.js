@@ -152,13 +152,29 @@
         }
     }
 
+    class PrintController {
+        constructor() {
+            this.button = document.querySelector(SELECTORS.printButton);
+            this.originalTitle = document.title;
+            this.printTitle = window.location.pathname.toLowerCase().endsWith("/it-support.html")
+                ? "Yehor_Filistieiev_Resume_IT_Support"
+                : "Yehor_Filistieiev_Resume_Software_Engineer";
+        }
+
+        init() {
+            window.addEventListener("beforeprint", () => { document.title = this.printTitle; });
+            window.addEventListener("afterprint", () => { document.title = this.originalTitle; });
+            this.button?.addEventListener("click", () => window.print());
+        }
+    }
+
     class ResumeApp {
         init() {
             new ThemeController().init();
             new ClipboardController().init();
             new ScrollController().init();
             new RevealController().init();
-            document.querySelector(SELECTORS.printButton)?.addEventListener("click", () => window.print());
+            new PrintController().init();
             const year = document.querySelector(SELECTORS.currentYear);
             if (year) year.textContent = String(new Date().getFullYear());
         }

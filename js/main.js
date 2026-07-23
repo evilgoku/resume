@@ -156,9 +156,13 @@
         constructor() {
             this.button = document.querySelector(SELECTORS.printButton);
             this.originalTitle = document.title;
-            this.printTitle = window.location.pathname.toLowerCase().endsWith("/it-support.html")
-                ? "Yehor_Filistieiev_Resume_IT_Support"
-                : "Yehor_Filistieiev_Resume_Software_Engineer";
+            const page = window.location.pathname.toLowerCase().split("/").pop();
+            const printTitles = {
+                "it-support.html": "Yehor_Filistieiev_Resume_IT_Support",
+                "warehouse-operations.html": "Yehor_Filistieiev_Resume_Warehouse_Operations"
+            };
+
+            this.printTitle = printTitles[page] ?? "Yehor_Filistieiev_Resume_Software_Engineer";
         }
 
         init() {

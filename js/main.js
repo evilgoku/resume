@@ -15,6 +15,26 @@
         reveal: "[data-reveal]"
     };
 
+    const TEXT = document.documentElement.lang.toLowerCase().startsWith("nl")
+        ? {
+            lightTheme: "Licht thema",
+            darkTheme: "Donker thema",
+            copyEmail: "E-mailadres kopiëren",
+            emailCopied: "E-mailadres gekopieerd",
+            copyUnavailable: "Kopiëren niet beschikbaar",
+            copiedMessage: email => `${email} is naar het klembord gekopieerd.`,
+            emailMessage: email => `E-mailadres: ${email}`
+        }
+        : {
+            lightTheme: "Light theme",
+            darkTheme: "Dark theme",
+            copyEmail: "Copy email",
+            emailCopied: "Email copied",
+            copyUnavailable: "Copy unavailable",
+            copiedMessage: email => `${email} copied to clipboard.`,
+            emailMessage: email => `Email: ${email}`
+        };
+
     const Storage = {
         get(key) {
             try { return window.localStorage.getItem(key); } catch { return null; }
@@ -58,7 +78,7 @@
             const icon = this.button?.querySelector(SELECTORS.themeIcon);
             const label = this.button?.querySelector(SELECTORS.themeLabel);
             if (icon) icon.textContent = isDark ? "☀" : "☾";
-            if (label) label.textContent = isDark ? "Light theme" : "Dark theme";
+            if (label) label.textContent = isDark ? TEXT.lightTheme : TEXT.darkTheme;
             if (this.themeColor) this.themeColor.content = isDark ? "#0b1120" : "#f5f7fb";
         }
     }
@@ -78,7 +98,7 @@
             if (!email) return;
             try {
                 await navigator.clipboard.writeText(email);
-                this.showFeedback("Email copied", `${email} copied to clipboard.`);
+                this.showFeedback(TEXT.emailCopied, TEXT.copiedMessage(email));
             } catch {
                 this.fallbackCopy(email);
             }
@@ -94,7 +114,10 @@
             input.select();
             const copied = document.execCommand("copy");
             input.remove();
-            this.showFeedback(copied ? "Email copied" : "Copy unavailable", copied ? `${value} copied to clipboard.` : `Email: ${value}`);
+            this.showFeedback(
+                copied ? TEXT.emailCopied : TEXT.copyUnavailable,
+                copied ? TEXT.copiedMessage(value) : TEXT.emailMessage(value)
+            );
         }
 
         showFeedback(label, message) {
@@ -102,7 +125,7 @@
             if (this.label) this.label.textContent = label;
             if (this.status) this.status.textContent = message;
             this.resetTimer = window.setTimeout(() => {
-                if (this.label) this.label.textContent = "Copy email";
+                if (this.label) this.label.textContent = TEXT.copyEmail;
                 if (this.status) this.status.textContent = "";
             }, 2500);
         }
@@ -159,7 +182,8 @@
             const page = window.location.pathname.toLowerCase().split("/").pop();
             const printTitles = {
                 "it-support.html": "Yehor_Filistieiev_Resume_IT_Support",
-                "warehouse-operations.html": "Yehor_Filistieiev_Resume_Warehouse_Operations"
+                "warehouse-operations.html": "Yehor_Filistieiev_Resume_Warehouse_Operations",
+                "operator.html": "Yehor_Filistieiev_CV_Operator_Productiemedewerker"
             };
 
             this.printTitle = printTitles[page] ?? "Yehor_Filistieiev_Resume_Software_Engineer";

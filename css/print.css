@@ -291,4 +291,48 @@
         animation: none !important;
         transition: none !important;
     }
+
+    .resume--operator {
+        font-size: 8pt;
+        line-height: 1.2;
+    }
+
+    .resume--operator .resume-shell {
+        width: 100%;
+        zoom: 0.95;
+    }
+
+    .resume--operator .hero {
+        padding-bottom: 1.8mm;
+    }
+
+    .resume--operator .resume-main {
+        gap: 1.7mm 3mm;
+        padding-top: 1.8mm;
+    }
+
+    .resume--operator .section {
+        gap: 1mm;
+    }
+
+    .resume--operator .timeline {
+        gap: 1mm;
+    }
+
+    .resume--operator .timeline__item {
+        gap: 0.5mm;
+    }
+
+    .resume--operator .bullet-list li + li {
+        margin-top: 0.1mm;
+    }
+
+    .resume--operator .grid {
+        gap: 1.2mm;
+    }
+
+    .resume--operator .card {
+        gap: 0.6mm;
+        padding: 1.3mm 1.8mm;
+    }
 }

@@ -103,6 +103,7 @@ h3 { font-size: var(--text-xl); }
 }
 .skip-link:focus { transform: translateY(0); }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.print-only { display: none; }
 
 .resume-shell {
     width: min(100%, var(--content-width));
